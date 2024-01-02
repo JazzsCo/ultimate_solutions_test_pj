@@ -1,6 +1,7 @@
 "use client";
 
 import { z } from "zod";
+import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 
@@ -25,6 +26,7 @@ export default function FormModal() {
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm({
     mode: "all",
     resolver: zodResolver(formSchema),
@@ -36,7 +38,15 @@ export default function FormModal() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("VALUES", values);
+    // http://localhost:3001/data is json-server url for test
+    const res = await axios.post("http://localhost:3001/data", {
+      name: values.name,
+      location: values.location,
+      position: values.position,
+    });
+
+    reset();
+    onClose();
   };
 
   return (
