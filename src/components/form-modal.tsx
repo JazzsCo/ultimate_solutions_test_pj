@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 
@@ -19,7 +20,18 @@ const formSchema = z.object({
     .min(3, { message: "Position has to be at least 3 characters" }),
 });
 
-export default function FormModal() {
+interface FormModalProps {
+  name: string;
+  location: string;
+  position: string;
+}
+
+export default function FormModal({
+  name,
+  location,
+  position,
+}: FormModalProps) {
+  const router = useRouter();
   const { isOpen, onClose } = useFormModal();
 
   const {
@@ -31,9 +43,9 @@ export default function FormModal() {
     mode: "all",
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      location: "",
-      position: "",
+      name: name ? name : "",
+      location: location ? location : "",
+      position: position ? position : "",
     },
   });
 
@@ -47,6 +59,7 @@ export default function FormModal() {
 
     reset();
     onClose();
+    router.refresh();
   };
 
   return (
@@ -72,13 +85,15 @@ export default function FormModal() {
               left: "50%",
               transform: "translate(-50%, -50%)",
               width: 500,
-              bgcolor: "#c0c9c9",
+              height: 400,
+              bgcolor: "white",
               borderRadius: "5px",
               boxShadow: 24,
               p: 4,
             }}
           >
             <form onSubmit={handleSubmit(onSubmit)}>
+              <h1>{name}</h1>
               <Box
                 sx={{
                   display: "flex",
@@ -90,6 +105,7 @@ export default function FormModal() {
                 <Controller
                   name="name"
                   control={control}
+                  defaultValue={name ? name : ""}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -105,6 +121,7 @@ export default function FormModal() {
                 <Controller
                   name="location"
                   control={control}
+                  defaultValue={location ? location : ""}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -120,6 +137,7 @@ export default function FormModal() {
                 <Controller
                   name="position"
                   control={control}
+                  defaultValue={position ? position : ""}
                   render={({ field }) => (
                     <TextField
                       {...field}

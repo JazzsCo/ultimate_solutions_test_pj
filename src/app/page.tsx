@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 
 import { Button } from "@mui/material";
 import { useFormModal } from "@/hook/use-form-modal";
+import DataTable from "@/components/data-table";
 
 export default function Home() {
   const { onOpen } = useFormModal();
@@ -22,6 +23,8 @@ export default function Home() {
           Create
         </Button>
       </div>
+
+      <DataTable />
     </main>
   );
 }

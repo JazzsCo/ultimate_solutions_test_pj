@@ -22,6 +22,8 @@
 
 .headingText {
   letter-spacing: 0.05rem;
+  font-size: large;
+  font-weight: 500;
 }
 
 .description p {
