@@ -1,21 +1,25 @@
 "use client";
 
+//Global packages
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+// Mui components
 import Table from "@mui/material/Table";
+import Paper from "@mui/material/Paper";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, IconButton } from "@mui/material";
-import DeleteModal from "./delete-modal";
-import FormModal from "./form-modal";
+import DeleteIcon from "@mui/icons-material/Delete";
+import TableContainer from "@mui/material/TableContainer";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+
+import FormModal from "@/components/form-modal";
+import DeleteModal from "@/components/delete-modal";
+
 import { useFormModal } from "@/hook/use-form-modal";
 
 interface Data {

@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.css";
 
 import { Button } from "@mui/material";
-import { useFormModal } from "@/hook/use-form-modal";
 import DataTable from "@/components/data-table";
+import { useFormModal } from "@/hook/use-form-modal";
 
 export default function Home() {
   const { onOpen } = useFormModal();

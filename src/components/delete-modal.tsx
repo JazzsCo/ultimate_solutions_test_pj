@@ -1,8 +1,5 @@
 "use client";
 
-import axios from "axios";
-import { useRouter } from "next/navigation";
-
 import { Backdrop, Box, Modal, Fade, Button, Typography } from "@mui/material";
 
 interface DeleteModalProps {
